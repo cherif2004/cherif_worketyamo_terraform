@@ -1,0 +1,23 @@
+
+---
+- hosts: all
+become: yes
+tasks:
+- name: Créer les utilisateurs
+user:
+name: '{{ cherif1 , cherif2 , cherif3 }}'
+state: present
+groups: admin
+shell: /bin/bash
+with_items:
+- cherif1
+- cherif2
+- cherif3
+- name: Créer des clés ssh
+authorized_key:
+user: '{{ item.name }}'
+key: '{{ item.key }}'
+with_items:
+- { name: cherif1, key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhQ0YfQ1mP2OjXO1cjm/kMjtF3e6n7WKQF/g9xITb3mKtHm+fHT/Q+yHv6r0KW1DYUw3VcQMh9oHZLte7DzC/Z+3KbQ3VuN+Xmf5nXHNvZm0xXvE7d2p5wQwj2cWw/hfh2/ER9Oe2m3+T6RbJf1+5KX3F37s3gx4v3w5y7S0/fCiNEgfv3v/jRKs3zkvh/RaxByS2VT/mTfQQWgWQ7Rz+5ZlJ5xhUFRcPp4TfJjLljVfz2+wUf1bVu+vq5XpBjTZVVZ4jK+n/qfF4hX5QPZLKg6YJF2/Euq3CPHv5PuQOh3YqjTmfIqPJz3LGaU7kXy+j+d/0Lqb6X3jz+fG8vISaF7XG4kD' }
+- { name: cherif2, key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPqKvZhKrVevZl7IcBJxHsVz79+2fUZpEk/YbKqXJfNh/bQz+qZ6VccW/G/FjZ9z/gvqB6pR5LW3Qv7S1KDlQqp5ZVqCZH2P2yL8kcGd+6j7WLb0G7yTqrvE6b0GQgKUQqKj9f6vzLh6AJkTkf7Cw8y0eFb6r4rF610UcKx6z9eLjJY6j0v7Q/ukUH7mfG+TdXm3U7FqF8zVme8jV5/AuP9AfGzR/8rvV/XbzNzQ2WGdUZ4Xe6zG5KUoDeoH/CzvxV22KW1/ZtQlVXs9EKJU3bCmGXCHnZVrg6E5KLhvVfdfs4Vnh2/j1O7/r+8U4jv9qsXHC2pq6f/HkUdS2vX9QnN' }
+- { name: cherif3, key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqkX/pTUqbOcw2WgAR/5YxXeMb5IgkO

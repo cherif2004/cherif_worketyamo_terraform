@@ -1,0 +1,20 @@
+
+[service-of-cherif1]
+serveur1.example.com
+serveur2.example.com
+
+[service-of-cherif2]
+serveur3.example.com
+serveur4.example.com
+
+Group vars :
+[service-of-cherif]
+ssh_port: 22
+ssh_username: admin
+ssh_password: secret
+
+[deuxieme_service]
+ssh_port: 22
+ssh_username: admin
+ssh_password: secret
+
